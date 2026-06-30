@@ -15,6 +15,7 @@ import com.vego.expensetracker.R
 import com.vego.expensetracker.data.local.AppDatabase
 import com.vego.expensetracker.data.repository.ExpenseRepository
 import com.vego.expensetracker.ui.add.AddExpenseFragment
+import com.vego.expensetracker.ui.detail.ExpenseDetailFragment
 import kotlinx.coroutines.launch
 
 class ExpensesFragment : Fragment(R.layout.fragment_expenses) {
@@ -40,7 +41,13 @@ class ExpensesFragment : Fragment(R.layout.fragment_expenses) {
         viewModel = ViewModelProvider(this, factory)[ExpensesViewModel::class.java]
 
         // RecyclerView
-        adapter = ExpensesAdapter()
+        //adapter = ExpensesAdapter()
+        adapter = ExpensesAdapter { expense ->
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, ExpenseDetailFragment.newInstance(expense))
+                .addToBackStack(null)
+                .commit()
+        }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvExpenses)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())

@@ -10,26 +10,37 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vego.expensetracker.R
 import com.vego.expensetracker.data.local.entity.ExpenseEntity
 
-class ExpensesAdapter :
+class ExpensesAdapter (
+    private val onItemClick: (ExpenseEntity) -> Unit
+):
+
     ListAdapter<ExpenseEntity, ExpensesAdapter.ExpenseViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_expense, parent, false)
-        return ExpenseViewHolder(view)
+        return ExpenseViewHolder(view, onItemClick)
     }
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class ExpenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ExpenseViewHolder(
+        itemView: View,
+        private val onItemClick: (ExpenseEntity) -> Unit
+    ) : RecyclerView.ViewHolder(itemView) {
+
         fun bind(expense: ExpenseEntity) {
             itemView.findViewById<TextView>(R.id.tvAmount).text =
                 "$${expense.amount}"
 
             itemView.findViewById<TextView>(R.id.tvCategory).text =
                 expense.category
+            itemView.findViewById<TextView>(R.id.tvDescription).text =
+                expense.description ?: "Sin descripcion"
+
+            itemView.setOnClickListener { onItemClick(expense) }
         }
 
     }
