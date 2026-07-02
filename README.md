@@ -3,11 +3,9 @@
 App Android para control y seguimiento de gastos personales.
 
 ## Screenshots
-
-![Lista de gastos](https://github.com/fer1Devapp/ExpenseTracker/main/exptr1.png)
-![Lista de gastos](https://github.com/fer1Devapp/ExpenseTracker/main/exptr2.png)
-![Lista de gastos](https://github.com/fer1Devapp/ExpenseTracker/main/exptr3.png)
-
+![Lista de gastos](https://raw.githubusercontent.com/fer1Devapp/ExpenseTracker/main/exptr1.png)
+![Detalle de gasto](https://raw.githubusercontent.com/fer1Devapp/ExpenseTracker/main/exptr2.png)
+![Eliminar gasto](https://raw.githubusercontent.com/fer1Devapp/ExpenseTracker/main/exptr3.png)
 
 ## Funcionalidades
 - ➕ Agregar gastos con categoría, monto y descripción
